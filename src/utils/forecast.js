@@ -8,6 +8,18 @@ const request = require('request');
 //     console.log('Data', data);
 // });
 
+
+//
+// Goal: Add new data to the forecast
+//
+// 1. Update the forecast string to include new data
+// 2. Commit your changes
+// 3. Push your changes to GitHib and deploy to Heroku
+// 4. Test your work in the live application!
+//
+
+
+
 const forecast = (latitude, longitude, callback) => {
 
     const url = 'http://api.weatherstack.com/current?access_key=8394c12551c47ee3f633741fa0ea847d&query=' + latitude + ',' + longitude + '&units=f';
@@ -28,7 +40,8 @@ const forecast = (latitude, longitude, callback) => {
             else {
                 callback(
                     undefined,
-                    'It is currently ' + body.current.temperature + ' degrees out.  It feels like ' + body.current.feelslike + ' degrees out.'
+                    //'It is currently ' + body.current.temperature + ' degrees out.  It feels like ' + body.current.feelslike + ' degrees out.'
+                    body.current.weather_descriptions[0] + '.  It is currently ' + body.current.temperature + ' degrees out.  It feels like ' + body.current.feelslike + ' degrees out.  Humidity is ' + body.current.humidity + '%.'
                 );
             }
         }
